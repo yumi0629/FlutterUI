@@ -27,9 +27,9 @@ SlideStack(
 
 
 from left  
-![from left](https://gitee.com/yumi0629/ImageAsset/blob/master/slide_drawer/slide01.gif)
+![from left](https://gitee.com/yumi0629/ImageAsset/raw/master/slide_drawer/slide01.gif)
 
-![from left](https://gitee.com/yumi0629/ImageAsset/blob/master/slide_drawer/slide02.gif)
+![from left](https://gitee.com/yumi0629/ImageAsset/raw/master/slide_drawer/slide02.gif)
 
 from top  
-![from top](https://gitee.com/yumi0629/ImageAsset/blob/master/slide_drawer/slide03.gif)
+![from top](https://gitee.com/yumi0629/ImageAsset/raw/master/slide_drawer/slide03.gif)
