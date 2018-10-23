@@ -3,6 +3,7 @@ import 'package:flutter_ui/route.dart';
 import 'package:flutter_ui/sharedelement/shared_element_shop.dart';
 import 'package:flutter_ui/sharedelement/shared_element_transition.dart';
 import 'package:flutter_ui/slidedrawer/slide_drawer_page.dart';
+import 'package:flutter_ui/sliver/sliver_menu.dart';
 
 void main() => runApp(new MyApp());
 
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
         UIRoute.slideDrawer: (_) => SlideDrawerPage(),
 //        UIRoute.sharedElement: (_) => SharedElementPage(),
         UIRoute.sharedElement: (_) => ShopPage(),
+        UIRoute.sliver: (_) => SliverPage(),
       },
     );
   }
@@ -133,5 +135,11 @@ final List<_MenuData> menus = [
     title: '共享元素动画',
     icon: Icons.transform,
     routeName: UIRoute.sharedElement,
+  ),
+
+  const _MenuData(
+    title: 'Slivers',
+    icon: Icons.favorite,
+    routeName: UIRoute.sliver,
   ),
 ];
