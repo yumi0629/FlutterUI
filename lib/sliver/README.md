@@ -1,6 +1,4 @@
-# flutter_shared_element
-
-#### Slivers
+# Slivers
 
 教程：[Flutter：Slivers大家族，让滑动视图的组合变得很简单！](https://www.jianshu.com/p/690ddade5d94)
 
