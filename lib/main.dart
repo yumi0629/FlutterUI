@@ -1,28 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui/draglike/drag_like.dart';
 import 'package:flutter_ui/route.dart';
 import 'package:flutter_ui/sharedelement/shared_element_shop.dart';
 import 'package:flutter_ui/sharedelement/shared_element_transition.dart';
 import 'package:flutter_ui/slidedrawer/slide_drawer_page.dart';
 import 'package:flutter_ui/sliver/sliver_menu.dart';
+import 'package:oktoast/oktoast.dart';
 
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Flutter UI',
-      theme: new ThemeData(
-        primarySwatch: Colors.pink,
-      ),
-      home: new MyHomePage(title: 'Flutter UI'),
-      routes: {
-        UIRoute.slideDrawer: (_) => SlideDrawerPage(),
+    return OKToast(
+        textStyle: TextStyle(fontSize: 18.0, color: Colors.white),
+        backgroundColor: Colors.grey..withAlpha(200),
+        radius: 8.0,
+        child: MaterialApp(
+          title: 'Flutter UI',
+          theme: ThemeData(
+            primarySwatch: Colors.pink,
+          ),
+          home: MyHomePage(title: 'Flutter UI'),
+          routes: {
+            UIRoute.slideDrawer: (_) => SlideDrawerPage(),
 //        UIRoute.sharedElement: (_) => SharedElementPage(),
-        UIRoute.sharedElement: (_) => ShopPage(),
-        UIRoute.sliver: (_) => SliverPage(),
-      },
-    );
+            UIRoute.sharedElement: (_) => ShopPage(),
+            UIRoute.sliver: (_) => SliverPage(),
+            UIRoute.dragLike: (_) => DragLikePage(),
+          },
+        ));
   }
 }
 
@@ -32,17 +39,17 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(
-          title: new Text(widget.title),
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
         ),
-        body: new SafeArea(
+        body: SafeArea(
           top: false,
           bottom: false,
           child: Container(
@@ -136,10 +143,14 @@ final List<_MenuData> menus = [
     icon: Icons.transform,
     routeName: UIRoute.sharedElement,
   ),
-
   const _MenuData(
     title: 'Slivers',
     icon: Icons.favorite,
     routeName: UIRoute.sliver,
+  ),
+  const _MenuData(
+    title: 'Drag to choose like or dislike',
+    icon: Icons.insert_photo,
+    routeName: UIRoute.dragLike,
   ),
 ];
