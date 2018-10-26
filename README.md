@@ -1,6 +1,6 @@
 # flutter_ui
 
-For help writing beautiful widget with Flutter.
+For help building amazing UI with Flutter.
 
 ## SlideDrawer：一个仿QQ侧滑菜单栏控件
 
