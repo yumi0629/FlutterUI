@@ -46,8 +46,26 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
+        appBar: PreferredSize(
+          child: Container(
+            child: AppBar(
+              title: Text(widget.title),
+              backgroundColor: Colors.transparent,
+              elevation: 0.0,
+            ),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.pinkAccent,
+                  Colors.white,
+                ],
+              ),
+            ),
+          ),
+          preferredSize:
+              new Size(MediaQuery.of(context).size.width, kToolbarHeight),
         ),
         body: SafeArea(
           top: false,
