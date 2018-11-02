@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui/circleprogressbar/progress_bar_page.dart';
 import 'package:flutter_ui/draglike/drag_like.dart';
 import 'package:flutter_ui/route.dart';
 import 'package:flutter_ui/sharedelement/shared_element_shop.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
             UIRoute.sharedElement: (_) => ShopPage(),
             UIRoute.sliver: (_) => SliverPage(),
             UIRoute.dragLike: (_) => DragLikePage(),
+            UIRoute.circleProgressBar: (_) => ProgressBarPage(),
           },
         ));
   }
@@ -170,5 +172,10 @@ final List<_MenuData> menus = [
     title: 'Drag to choose like or dislike',
     icon: Icons.insert_photo,
     routeName: UIRoute.dragLike,
+  ),
+  const _MenuData(
+    title: 'Circle Progress Bar',
+    icon: Icons.blur_circular,
+    routeName: UIRoute.circleProgressBar,
   ),
 ];
