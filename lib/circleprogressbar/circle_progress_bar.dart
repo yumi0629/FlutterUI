@@ -172,8 +172,11 @@ class ProgressPainter extends CustomPainter {
       ..color = shadowColor
       ..strokeWidth = shadowWidth
       ..maskFilter = MaskFilter.blur(BlurStyle.normal, shadowWidth);
-    canvas.drawCircle(offsetCenter, outerRadius, shadowPaint);
-    canvas.drawCircle(offsetCenter, innerRadius, shadowPaint);
+//    canvas.drawCircle(offsetCenter, outerRadius, shadowPaint);
+//    canvas.drawCircle(offsetCenter, innerRadius, shadowPaint);
+
+    Path path = Path.combine(PathOperation.difference, Path()..addOval(Rect.fromCircle(center: offsetCenter, radius: outerRadius)), Path()..addOval(Rect.fromCircle(center: offsetCenter, radius: innerRadius)));
+    canvas.drawShadow(path, shadowColor, 4.0, true);
 
     // draw ring.
     final ringPaint = Paint()
@@ -194,7 +197,7 @@ class ProgressPainter extends CustomPainter {
         canvas.translate(0.0, size.width);
         canvas.rotate(degToRad(-90.0));
         final Gradient gradient = new SweepGradient(
-          endAngle: degToRad(angle),
+          endAngle: radians,
           colors: [
             Colors.white,
             currentDotColor,
@@ -208,7 +211,7 @@ class ProgressPainter extends CustomPainter {
           ..strokeWidth = progressWidth
           ..shader = gradient.createShader(arcRect);
         canvas.drawArc(
-            arcRect, offset, degToRad(angle) - offset, false, progressPaint);
+            arcRect, offset, radians - offset, false, progressPaint);
         canvas.restore();
       }
     }
