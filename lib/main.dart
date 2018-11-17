@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ui/circleprogressbar/progress_bar_page.dart';
 import 'package:flutter_ui/draglike/drag_like.dart';
+import 'package:flutter_ui/likebutton/like_button_page.dart';
 import 'package:flutter_ui/route.dart';
 import 'package:flutter_ui/sharedelement/shared_element_shop.dart';
 import 'package:flutter_ui/sharedelement/shared_element_transition.dart';
 import 'package:flutter_ui/slidedrawer/slide_drawer_page.dart';
 import 'package:flutter_ui/sliver/sliver_menu.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() => runApp(new MyApp());
 
@@ -23,6 +25,16 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.pink,
           ),
           home: MyHomePage(title: 'Flutter UI'),
+          localizationsDelegates: [
+            //此处
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
+          supportedLocales: [
+            //此处
+            const Locale('zh', 'CH'),
+            const Locale('en', 'US'),
+          ],
           routes: {
             UIRoute.slideDrawer: (_) => SlideDrawerPage(),
 //        UIRoute.sharedElement: (_) => SharedElementPage(),
@@ -30,6 +42,7 @@ class MyApp extends StatelessWidget {
             UIRoute.sliver: (_) => SliverPage(),
             UIRoute.dragLike: (_) => DragLikePage(),
             UIRoute.circleProgressBar: (_) => ProgressBarPage(),
+            UIRoute.likeButton: (_) => LikeButtonPage(),
           },
         ));
   }
@@ -165,7 +178,7 @@ final List<_MenuData> menus = [
   ),
   const _MenuData(
     title: 'Slivers',
-    icon: Icons.favorite,
+    icon: Icons.style,
     routeName: UIRoute.sliver,
   ),
   const _MenuData(
@@ -177,5 +190,10 @@ final List<_MenuData> menus = [
     title: 'Circle Progress Bar',
     icon: Icons.blur_circular,
     routeName: UIRoute.circleProgressBar,
+  ),
+  const _MenuData(
+    title: '仿Twitter的点赞Button',
+    icon: Icons.favorite,
+    routeName: UIRoute.likeButton,
   ),
 ];

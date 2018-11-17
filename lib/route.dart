@@ -4,4 +4,5 @@ abstract class UIRoute{
   static const String sliver = 'sliver';
   static const String dragLike = 'drag_like';
   static const String circleProgressBar = 'circle_progress_bar';
+  static const String likeButton = 'like_button';
 }
