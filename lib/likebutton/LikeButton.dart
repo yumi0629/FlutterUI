@@ -3,6 +3,8 @@ import 'package:flutter_ui/likebutton/model.dart';
 import 'dot_painter.dart';
 import 'circle_painter.dart';
 
+typedef LikeCallback = void Function(bool isLike);
+
 class LikeButton extends StatefulWidget {
   final double width;
   final LikeIcon icon;
@@ -10,6 +12,7 @@ class LikeButton extends StatefulWidget {
   final DotColor dotColor;
   final Color circleStartColor;
   final Color circleEndColor;
+  final LikeCallback onIconClicked;
 
   const LikeButton({
     Key key,
@@ -18,7 +21,7 @@ class LikeButton extends StatefulWidget {
       Icons.favorite,
       iconColor: Colors.pinkAccent,
     ),
-    this.duration = const Duration(milliseconds: 1000),
+    this.duration = const Duration(milliseconds: 5000),
     this.dotColor = const DotColor(
       dotPrimaryColor: const Color(0xFFFFC107),
       dotSecondaryColor: const Color(0xFFFF9800),
@@ -27,6 +30,7 @@ class LikeButton extends StatefulWidget {
     ),
     this.circleStartColor = const Color(0xFFFF5722),
     this.circleEndColor = const Color(0xFFFFC107),
+    this.onIconClicked,
   }) : super(key: key);
 
   @override
@@ -69,7 +73,6 @@ class _LikeButtonState extends State<LikeButton> with TickerProviderStateMixin {
           ),
         ),
         CustomPaint(
-          isComplex: true,
           size: Size(widget.width * 0.35, widget.width * 0.35),
           painter: CirclePainter(
               innerCircleRadiusProgress: innerCircle.value,
@@ -98,14 +101,15 @@ class _LikeButtonState extends State<LikeButton> with TickerProviderStateMixin {
   }
 
   void _onTap() {
+    if (_controller.isAnimating) return;
     isLiked = !isLiked;
     if (isLiked) {
-      if (_controller.isAnimating) return;
       _controller.reset();
       _controller.forward();
     } else {
       setState(() {});
     }
+    if (widget.onIconClicked != null) widget.onIconClicked(isLiked);
   }
 
   void _initAllAmimations() {
