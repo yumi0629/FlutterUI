@@ -40,7 +40,7 @@ from top
 
 效果图：
 
-![](https://gitee.com/yumi0629/ImageAsset/raw/master/drag_like/drag_like.gif)
+![](https://github.com/yumi0629/DragChooseLike/blob/master/images/drag_like.gif?raw=true)
 
 ## CircleProgressBar
 
