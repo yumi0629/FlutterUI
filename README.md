@@ -61,3 +61,9 @@ code：https://github.com/yumi0629/FlutterUI/tree/master/lib/likebutton
 效果图：
 
 ![](https://github.com/yumi0629/LikeButton/blob/master/lib/like_button.gif?raw=true)
+
+## Tip Menu
+
+Just a demo. Not for project use !!!
+
+![](https://github.com/yumi0629/FlutterUI/blob/master/preImages/tip_menu.gif?raw=true)
