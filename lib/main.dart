@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_ui/circleprogressbar/progress_bar_page.dart';
 import 'package:flutter_ui/draglike/drag_like.dart';
 import 'package:flutter_ui/likebutton/like_button_page.dart';
@@ -7,10 +8,14 @@ import 'package:flutter_ui/sharedelement/shared_element_shop.dart';
 import 'package:flutter_ui/sharedelement/shared_element_transition.dart';
 import 'package:flutter_ui/slidedrawer/slide_drawer_page.dart';
 import 'package:flutter_ui/sliver/sliver_menu.dart';
+import 'package:flutter_ui/tipmenu/tip_menu_page.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() => runApp(new MyApp());
+void main() {
+  debugPaintSizeEnabled = false;
+  runApp(new MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -43,6 +48,7 @@ class MyApp extends StatelessWidget {
             UIRoute.dragLike: (_) => DragLikePage(),
             UIRoute.circleProgressBar: (_) => ProgressBarPage(),
             UIRoute.likeButton: (_) => LikeButtonPage(),
+            UIRoute.tipMenu: (_) => TipMenuPage(),
           },
         ));
   }
@@ -195,5 +201,10 @@ final List<_MenuData> menus = [
     title: '仿Twitter的点赞Button',
     icon: Icons.favorite,
     routeName: UIRoute.likeButton,
+  ),
+  const _MenuData(
+    title: 'TipMenu 长按复制/粘贴',
+    icon: Icons.menu,
+    routeName: UIRoute.tipMenu,
   ),
 ];

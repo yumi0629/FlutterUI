@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ui/likebutton/LikeButton.dart';
+import 'package:flutter_ui/likebutton/like_button.dart';
 import 'package:flutter_ui/likebutton/model.dart';
 
 class LikeButtonPage extends StatelessWidget {
