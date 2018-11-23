@@ -5,6 +5,7 @@ import 'model.dart';
 import 'package:oktoast/oktoast.dart';
 
 class TipMenuPage extends StatelessWidget {
+
   final List<MyMenu> menus = [
     MyMenu(index: 0, description: 'copy'),
     MyMenu(index: 1, description: 'paste'),
@@ -12,8 +13,7 @@ class TipMenuPage extends StatelessWidget {
   ];
 
   OverlayEntry _overlayEntry;
-  GlobalKey anchorKey = GlobalKey();
-  bool isTipOffstage = true;
+  final GlobalKey anchorKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {

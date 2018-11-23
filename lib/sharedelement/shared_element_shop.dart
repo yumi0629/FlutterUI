@@ -62,22 +62,24 @@ class _ShopState extends State<ShopPage> {
         return GestureDetector(
           behavior: HitTestBehavior.translucent,
           onTap: () {
-            Navigator.of(context).push(PageRouteBuilder(
-                pageBuilder: (context, _, __) {
-                  return ProductListPage(
-                    title: category.category,
-                  );
-                },
-                transitionDuration: const Duration(milliseconds: 500),
-                transitionsBuilder: (_, animation, __, child) {
-                  return FadeTransition(
-                    opacity: animation,
-                    child: FadeTransition(
-                      opacity: Tween(begin: 0.5, end: 1.0).animate(animation),
-                      child: child,
-                    ),
-                  );
-                }));
+            Navigator.of(context).push(
+              PageRouteBuilder(
+                  pageBuilder: (context, _, __) {
+                    return ProductListPage(
+                      title: category.category,
+                    );
+                  },
+                  transitionDuration: const Duration(milliseconds: 500),
+                  transitionsBuilder: (_, animation, __, child) {
+                    return FadeTransition(
+                      opacity: animation,
+                      child: FadeTransition(
+                        opacity: Tween(begin: 0.5, end: 1.0).animate(animation),
+                        child: child,
+                      ),
+                    );
+                  }),
+            );
           },
           child: Card(
             child: Container(

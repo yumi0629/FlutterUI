@@ -66,4 +66,16 @@ code：https://github.com/yumi0629/FlutterUI/tree/master/lib/likebutton
 
 Just a demo. Not for project use !!!
 
+code：https://github.com/yumi0629/FlutterUI/tree/master/lib/tipmenu
+
 ![](https://github.com/yumi0629/FlutterUI/blob/master/preImages/tip_menu.gif?raw=true)
+
+## Scrawl & Watermark
+
+A scrawl & adding watermark demo.
+
+code：https://github.com/yumi0629/FlutterUI/tree/master/lib/scrawl
+
+![scrawl](https://github.com/yumi0629/Flutter_Scrawl/blob/master/preimages/scrawl_01.gif?raw=true)
+
+![watermark](https://github.com/yumi0629/Flutter_Scrawl/blob/master/preimages/scrawl_02.gif?raw=true)

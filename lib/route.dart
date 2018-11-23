@@ -6,4 +6,5 @@ abstract class UIRoute{
   static const String circleProgressBar = 'circle_progress_bar';
   static const String likeButton = 'like_button';
   static const String tipMenu = 'tip_menu';
+  static const String scrawl = 'scraw';
 }

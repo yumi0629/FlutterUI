@@ -4,6 +4,7 @@ import 'package:flutter_ui/circleprogressbar/progress_bar_page.dart';
 import 'package:flutter_ui/draglike/drag_like.dart';
 import 'package:flutter_ui/likebutton/like_button_page.dart';
 import 'package:flutter_ui/route.dart';
+import 'package:flutter_ui/scrawl/content_page.dart';
 import 'package:flutter_ui/sharedelement/shared_element_shop.dart';
 import 'package:flutter_ui/sharedelement/shared_element_transition.dart';
 import 'package:flutter_ui/slidedrawer/slide_drawer_page.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
             UIRoute.circleProgressBar: (_) => ProgressBarPage(),
             UIRoute.likeButton: (_) => LikeButtonPage(),
             UIRoute.tipMenu: (_) => TipMenuPage(),
+            UIRoute.scrawl: (_) => ContentPage(),
           },
         ));
   }
@@ -206,5 +208,10 @@ final List<_MenuData> menus = [
     title: 'TipMenu 长按复制/粘贴',
     icon: Icons.menu,
     routeName: UIRoute.tipMenu,
+  ),
+  const _MenuData(
+    title: '截图/涂鸦/加水印',
+    icon: Icons.format_paint,
+    routeName: UIRoute.scrawl,
   ),
 ];
