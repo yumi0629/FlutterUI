@@ -16,18 +16,6 @@ from left
 from top  
 ![from top](https://gitee.com/yumi0629/ImageAsset/raw/master/slide_drawer/slide03.gif)
 
-## Hero
-
-教程：[谈一谈Flutter中的共享元素动画Hero](https://www.jianshu.com/p/ddb484789883)
-
-code：https://github.com/yumi0629/FlutterUI/tree/master/lib/sharedelement
-
-## Slivers
-
-教程：[Flutter：Slivers大家族，让滑动视图的组合变得很简单！](https://www.jianshu.com/p/690ddade5d94)
-
-code：https://github.com/yumi0629/FlutterUI/tree/master/lib/sliver
-
 ## Drag to choose like or dislike
 
 一个仿“探探”的左右滑动选择喜欢/不喜欢的控件
@@ -49,6 +37,14 @@ code：https://github.com/yumi0629/FlutterUI/tree/master/lib/circleprogressbar
 效果图：
 
 ![](https://gitee.com/yumi0629/ImageAsset/raw/master/circle_progressbar/circle_progress_bar.gif)
+
+## CircleFloatingButton
+
+code：https://github.com/yumi0629/FlutterUI/tree/master/lib/circlefloatingmenu
+
+效果图：
+
+![](https://github.com/yumi0629/CircleFloatingMenu/blob/master/lib/circle_floating_menu.gif?raw=true)
 
 ## LikeButton
 
@@ -79,3 +75,15 @@ code：https://github.com/yumi0629/FlutterUI/tree/master/lib/scrawl
 ![scrawl](https://github.com/yumi0629/Flutter_Scrawl/blob/master/preimages/scrawl_01.gif?raw=true)
 
 ![watermark](https://github.com/yumi0629/Flutter_Scrawl/blob/master/preimages/scrawl_02.gif?raw=true)
+
+## Hero
+
+教程：[谈一谈Flutter中的共享元素动画Hero](https://www.jianshu.com/p/ddb484789883)
+
+code：https://github.com/yumi0629/FlutterUI/tree/master/lib/sharedelement
+
+## Slivers
+
+教程：[Flutter：Slivers大家族，让滑动视图的组合变得很简单！](https://www.jianshu.com/p/690ddade5d94)
+
+code：https://github.com/yumi0629/FlutterUI/tree/master/lib/sliver

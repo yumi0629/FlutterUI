@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_ui/circlefloatingmenu/ciecle_floating_menu_page.dart';
 import 'package:flutter_ui/circleprogressbar/progress_bar_page.dart';
 import 'package:flutter_ui/draglike/drag_like.dart';
 import 'package:flutter_ui/likebutton/like_button_page.dart';
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
             UIRoute.likeButton: (_) => LikeButtonPage(),
             UIRoute.tipMenu: (_) => TipMenuPage(),
             UIRoute.scrawl: (_) => ContentPage(),
+            UIRoute.circleFloatingMenu: (_) => FloatingMenuPage(),
           },
         ));
   }
@@ -213,5 +215,10 @@ final List<_MenuData> menus = [
     title: '截图/涂鸦/加水印',
     icon: Icons.format_paint,
     routeName: UIRoute.scrawl,
+  ),
+  const _MenuData(
+    title: 'CircleFloatingMenu',
+    icon: Icons.view_module,
+    routeName: UIRoute.circleFloatingMenu,
   ),
 ];
