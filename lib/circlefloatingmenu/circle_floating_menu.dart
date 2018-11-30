@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 typedef MenuToggled<state> = void Function(MenuState state);
+typedef MenuSelected<index> = void Function(int index);
 
 num degToRad(num deg) => deg * (pi / 180.0);
 
@@ -19,6 +20,7 @@ class CircleFloatingMenu extends StatefulWidget {
   final double endAngle;
   final Duration duration;
   final MenuToggled menuToggled;
+  final MenuSelected menuSelected;
 
   const CircleFloatingMenu({
     Key key,
@@ -28,6 +30,7 @@ class CircleFloatingMenu extends StatefulWidget {
     this.endAngle = 270 * (pi / 180.0),
     this.duration = const Duration(milliseconds: 400),
     this.menuToggled,
+    this.menuSelected,
   }) : super(key: key);
 
   @override
@@ -62,16 +65,28 @@ class CircleFloatingState extends State<CircleFloatingMenu>
           offset: _getOffset(i),
           child: Transform.rotate(
             angle: degToRad(animations["rotate"].value * 360.0),
-            child: widget.subMenus[i],
+            child: GestureDetector(
+              child: widget.subMenus[i],
+              onTap: () {
+                print('onTap');
+                if (widget.menuSelected != null) widget.menuSelected(i);
+                toggleMenu();
+              },
+              onPanStart: (_){
+                print('onPanStart');
+              },
+            ),
           ),
         ),
       );
       widgets.add(sub);
     }
-    widgets.add(GestureDetector(
-      child: widget.floatingButton,
-      onTap: toggleMenu,
-    ));
+    widgets.add(
+      GestureDetector(
+        child: widget.floatingButton,
+        onTap: toggleMenu,
+      ),
+    );
     return Stack(
       alignment: AlignmentDirectional.center,
       children: widgets,
