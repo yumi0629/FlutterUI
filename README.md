@@ -2,7 +2,7 @@
 
 For help building amazing UI with Flutter.
 
-## CircleFloatingButton
+## CircleFloatingMenu
 
 code：https://github.com/yumi0629/FlutterUI/tree/master/lib/circlefloatingmenu
 

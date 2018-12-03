@@ -1,4 +1,4 @@
-#### CircleFloatingButton
+#### CircleFloatingMenu
 
 效果图：
 
