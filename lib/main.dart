@@ -4,6 +4,7 @@ import 'package:flutter_ui/circlefloatingmenu/ciecle_floating_menu_page.dart';
 import 'package:flutter_ui/circleprogressbar/progress_bar_page.dart';
 import 'package:flutter_ui/draglike/drag_like.dart';
 import 'package:flutter_ui/likebutton/like_button_page.dart';
+import 'package:flutter_ui/liquidcheck/liquid_check_page.dart';
 import 'package:flutter_ui/route.dart';
 import 'package:flutter_ui/scrawl/content_page.dart';
 import 'package:flutter_ui/sharedelement/shared_element_shop.dart';
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
             UIRoute.tipMenu: (_) => TipMenuPage(),
             UIRoute.scrawl: (_) => ContentPage(),
             UIRoute.circleFloatingMenu: (_) => FloatingMenuPage(),
+            UIRoute.liquidCheck: (_) => LiquidCheckPage(),
           },
         ));
   }
@@ -220,5 +222,10 @@ final List<_MenuData> menus = [
     title: 'CircleFloatingMenu',
     icon: Icons.view_module,
     routeName: UIRoute.circleFloatingMenu,
+  ),
+  const _MenuData(
+    title: 'liquidCheck',
+    icon: Icons.opacity,
+    routeName: UIRoute.liquidCheck,
   ),
 ];

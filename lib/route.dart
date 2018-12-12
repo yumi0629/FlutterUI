@@ -8,4 +8,5 @@ abstract class UIRoute{
   static const String tipMenu = 'tip_menu';
   static const String scrawl = 'scraw';
   static const String circleFloatingMenu = 'circle_floating_menu';
+  static const String liquidCheck = 'liquid_check';
 }

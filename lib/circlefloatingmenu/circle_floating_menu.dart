@@ -72,7 +72,7 @@ class CircleFloatingState extends State<CircleFloatingMenu>
                 if (widget.menuSelected != null) widget.menuSelected(i);
                 toggleMenu();
               },
-              onPanStart: (_){
+              onPanStart: (_) {
                 print('onPanStart');
               },
             ),
