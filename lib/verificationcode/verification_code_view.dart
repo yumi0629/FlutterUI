@@ -129,7 +129,6 @@ class CustomHeartInputBorder extends UnderlineInputBorder {
     double gapPercentage = 0.0,
     TextDirection textDirection,
   }) {
-    super.paint(canvas, rect);
     double width = rect.height - offsetX;
     double radius = width * 0.25;
     // 1:editable.dart _kCaretGap
