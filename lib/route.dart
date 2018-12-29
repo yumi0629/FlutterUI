@@ -9,4 +9,5 @@ abstract class UIRoute{
   static const String scrawl = 'scraw';
   static const String circleFloatingMenu = 'circle_floating_menu';
   static const String liquidCheck = 'liquid_check';
+  static const String verificationCode = 'verification_code';
 }

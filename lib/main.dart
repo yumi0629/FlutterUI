@@ -12,6 +12,7 @@ import 'package:flutter_ui/sharedelement/shared_element_transition.dart';
 import 'package:flutter_ui/slidedrawer/slide_drawer_page.dart';
 import 'package:flutter_ui/sliver/sliver_menu.dart';
 import 'package:flutter_ui/tipmenu/tip_menu_page.dart';
+import 'package:flutter_ui/verificationcode/VerificationCodePaget.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -28,11 +29,11 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.grey..withAlpha(200),
         radius: 8.0,
         child: MaterialApp(
-          title: 'Flutter UI',
+          title: 'Flutter YMUI',
           theme: ThemeData(
             primarySwatch: Colors.pink,
           ),
-          home: MyHomePage(title: 'Flutter UI'),
+          home: MyHomePage(title: 'Flutter YMUI'),
           localizationsDelegates: [
             //此处
             GlobalMaterialLocalizations.delegate,
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
             UIRoute.scrawl: (_) => ContentPage(),
             UIRoute.circleFloatingMenu: (_) => FloatingMenuPage(),
             UIRoute.liquidCheck: (_) => LiquidCheckPage(),
+            UIRoute.verificationCode: (_) => VerificationCodePage(),
           },
         ));
   }

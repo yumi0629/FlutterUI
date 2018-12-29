@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class Point {
@@ -41,6 +43,7 @@ class ScrawlPainter extends CustomPainter {
       for (int i = 0; i < curPoints.length - 1; i++) {
         if (curPoints[i] != null && curPoints[i + 1] != null)
           canvas.drawLine(curPoints[i], curPoints[i + 1], _linePaint);
+//      canvas.drawPoints(PointMode.polygon, curPoints, _linePaint);
       }
     }
   }
