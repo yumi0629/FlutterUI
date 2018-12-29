@@ -10,7 +10,8 @@ code：https://github.com/yumi0629/FlutterUI/tree/master/lib/verificationcode
 
 效果图：
  
-![from left](https://github.com/yumi0629/PreImages/blob/master/verification_code.gif)
+![](https://github.com/yumi0629/PreImages/blob/master/verification_code.gif)
+![](https://github.com/yumi0629/PreImages/blob/master/verification_code.png?raw=true)
 
 ## LiquidCheckButton
 
