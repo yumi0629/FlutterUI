@@ -129,12 +129,11 @@ class CustomHeartInputBorder extends UnderlineInputBorder {
     double gapPercentage = 0.0,
     TextDirection textDirection,
   }) {
+    super.paint(canvas, rect);
     double width = rect.height - offsetX;
     double radius = width * 0.25;
     // 1:editable.dart _kCaretGap
     double curStartX = startOffset - radius - offsetX - 1;
-    print(
-        'rect.height:${rect.height},curStartX:$curStartX,offsetX:$offsetX,startOffset:$startOffset');
     if (curStartX < 0) {
       throw ArgumentError(
           'No enough space to paint border! LetterSpace is too small.');

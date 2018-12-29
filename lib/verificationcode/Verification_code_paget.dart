@@ -3,7 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_ui/verificationcode/verification_code_view.dart';
 import 'dart:ui' as ui;
 
-class VerificationCodePage extends StatelessWidget {
+class VerificationCodePage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => VerificationCodeState();
+}
+
+class VerificationCodeState extends State<VerificationCodePage> {
   double calcTrueTextSize(double textSize) {
     // 测量单个数字实际长度
     var paragraph = ui.ParagraphBuilder(ui.ParagraphStyle(fontSize: textSize))
@@ -28,6 +33,15 @@ class VerificationCodePage extends StatelessWidget {
   }
 
   ui.Image image;
+
+  Future future;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    future = _loadImage(ExactAssetImage("images/border.png"));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,23 +76,8 @@ class VerificationCodePage extends StatelessWidget {
       ),
       body: ListView(
         children: <Widget>[
-          VerificationCodeInput(
-            textSize: 50.0,
-            letterSpace: 30.0,
-            inputBorder: underLineBorder,
-          ),
-          VerificationCodeInput(
-            textSize: 50.0,
-            letterSpace: 30.0,
-            inputBorder: rectBorder,
-          ),
-          VerificationCodeInput(
-            textSize: t,
-            letterSpace: space,
-            inputBorder: heartBorder,
-          ),
           FutureBuilder(
-              future: _loadImage(ExactAssetImage("images/border.png")),
+              future: future,
               builder: (context, snapshot) {
                 var imageBorder = CustomImageInputBorder(
                   startOffset: getStartOffset(space),
@@ -107,6 +106,21 @@ class VerificationCodePage extends StatelessWidget {
                     break;
                 }
               }),
+          VerificationCodeInput(
+            textSize: 50.0,
+            letterSpace: 30.0,
+            inputBorder: underLineBorder,
+          ),
+          VerificationCodeInput(
+            textSize: 50.0,
+            letterSpace: 30.0,
+            inputBorder: rectBorder,
+          ),
+          VerificationCodeInput(
+            textSize: t,
+            letterSpace: space,
+            inputBorder: heartBorder,
+          ),
         ],
       ),
     );
