@@ -2,6 +2,16 @@
 
 For help building amazing UI with Flutter.
 
+## VerificationCodeInput
+
+教程：[Flutter花式玩转TextField，写一个验证码输入框超简单！](https://juejin.im/post/5c26fff86fb9a049d37f2e6b)
+
+code：https://github.com/yumi0629/FlutterUI/tree/master/lib/verificationcode
+
+效果图：
+ 
+![from left](https://github.com/yumi0629/PreImages/blob/master/verification_code.gif)
+
 ## LiquidCheckButton
 
 A button with liquid wave to show download progress.
@@ -10,7 +20,7 @@ code：https://github.com/yumi0629/FlutterUI/tree/master/lib/liquidcheck
 
 效果图：
 
-![](https://github.com/yumi0629/FlutterUI/blob/master/preImages/liquid_check_button_02.gif?raw=true)
+![](https://github.com/yumi0629/PreImages/blob/master/liquid_check_button_02.gif?raw=true)
 
 ## CircleFloatingMenu
 
@@ -70,7 +80,7 @@ Just a demo. Not for project use !!!
 
 code：https://github.com/yumi0629/FlutterUI/tree/master/lib/tipmenu
 
-![](https://github.com/yumi0629/FlutterUI/blob/master/preImages/tip_menu.gif?raw=true)
+![](https://github.com/yumi0629/PreImages/blob/master/tip_menu.gif?raw=true)
 
 ## Scrawl & Watermark
 

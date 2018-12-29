@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_ui/verificationcode/verification_code_view.dart';
 import 'dart:ui' as ui;
 
@@ -15,6 +16,18 @@ class VerificationCodePage extends StatelessWidget {
   double getStartOffset(double letterSpace) {
     return letterSpace * 0.5;
   }
+
+  Future<void> _loadImage(ExactAssetImage image) async {
+    AssetBundleImageKey key = await image.obtainKey(ImageConfiguration());
+    final ByteData data = await key.bundle.load(key.name);
+    if (data == null) throw 'Unable to read data';
+    var codec = await ui.instantiateImageCodec(data.buffer.asUint8List());
+    // add additional checking for number of frames etc here
+    var frame = await codec.getNextFrame();
+    this.image = frame.image;
+  }
+
+  ui.Image image;
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +77,36 @@ class VerificationCodePage extends StatelessWidget {
             letterSpace: space,
             inputBorder: heartBorder,
           ),
+          FutureBuilder(
+              future: _loadImage(ExactAssetImage("images/border.png")),
+              builder: (context, snapshot) {
+                var imageBorder = CustomImageInputBorder(
+                  startOffset: getStartOffset(space),
+                  spaceWidth: space,
+                  textWidth: calcTrueTextSize(50.0),
+                  textLength: 3,
+                  image: image,
+                );
+                switch (snapshot.connectionState) {
+                  case ConnectionState.done:
+                    if (snapshot.hasError) return Container();
+                    return TextField(
+                      maxLength: 3,
+                      keyboardType: TextInputType.number,
+                      style: TextStyle(
+                          fontSize: 50.0,
+                          color: Colors.black87,
+                          letterSpacing: space),
+                      decoration: InputDecoration(
+                          enabledBorder: imageBorder,
+                          focusedBorder: imageBorder),
+                    );
+                    break;
+                  default:
+                    return Container();
+                    break;
+                }
+              }),
         ],
       ),
     );

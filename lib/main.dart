@@ -12,7 +12,7 @@ import 'package:flutter_ui/sharedelement/shared_element_transition.dart';
 import 'package:flutter_ui/slidedrawer/slide_drawer_page.dart';
 import 'package:flutter_ui/sliver/sliver_menu.dart';
 import 'package:flutter_ui/tipmenu/tip_menu_page.dart';
-import 'package:flutter_ui/verificationcode/VerificationCodePaget.dart';
+import 'package:flutter_ui/verificationcode/Verification_code_paget.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -225,9 +225,10 @@ final List<_MenuData> menus = [
     icon: Icons.view_module,
     routeName: UIRoute.circleFloatingMenu,
   ),
+
   const _MenuData(
-    title: 'liquidCheck',
-    icon: Icons.opacity,
-    routeName: UIRoute.liquidCheck,
+    title: 'VerificationCode',
+    icon: Icons.code,
+    routeName: UIRoute.verificationCode,
   ),
 ];

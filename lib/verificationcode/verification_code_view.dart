@@ -1,6 +1,7 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_ui/utils/dash_path.dart' as dashPath;
 
@@ -203,5 +204,38 @@ class CustomUnderlineInputBorder extends UnderlineInputBorder {
           spaceWidth,
         ]));
     canvas.drawPath(path, borderSide.toPaint());
+  }
+}
+
+class CustomImageInputBorder extends UnderlineInputBorder {
+  final double spaceWidth;
+  final double textWidth;
+  final int textLength;
+  final double startOffset;
+  final ui.Image image;
+
+  const CustomImageInputBorder({
+    this.startOffset = 0.0,
+    this.spaceWidth,
+    this.textWidth,
+    this.textLength,
+    this.image,
+    BorderSide borderSide = const BorderSide(),
+  }) : super(borderSide: borderSide);
+
+  @override
+  void paint(
+    Canvas canvas,
+    Rect rect, {
+    double gapStart,
+    double gapExtent = 0.0,
+    double gapPercentage = 0.0,
+    TextDirection textDirection,
+  }) {
+    double curStartX = rect.left;
+    for (int i = 0; i < textLength; i++) {
+      canvas.drawImage(image, Offset(curStartX, 0.0), Paint());
+      curStartX += (textWidth + spaceWidth);
+    }
   }
 }
