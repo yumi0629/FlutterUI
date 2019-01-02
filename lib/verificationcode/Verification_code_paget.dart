@@ -9,19 +9,6 @@ class VerificationCodePage extends StatefulWidget {
 }
 
 class VerificationCodeState extends State<VerificationCodePage> {
-  double calcTrueTextSize(double textSize) {
-    // 测量单个数字实际长度
-    var paragraph = ui.ParagraphBuilder(ui.ParagraphStyle(fontSize: textSize))
-      ..addText("0");
-    var p = paragraph.build()
-      ..layout(ui.ParagraphConstraints(width: double.infinity));
-    return p.minIntrinsicWidth;
-  }
-
-  double getStartOffset(double letterSpace) {
-    return letterSpace * 0.5;
-  }
-
   Future<void> _loadImage(ExactAssetImage image) async {
     AssetBundleImageKey key = await image.obtainKey(ImageConfiguration());
     final ByteData data = await key.bundle.load(key.name);
@@ -38,7 +25,6 @@ class VerificationCodeState extends State<VerificationCodePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     future = _loadImage(ExactAssetImage("images/border.png"));
   }
@@ -46,27 +32,21 @@ class VerificationCodeState extends State<VerificationCodePage> {
   @override
   Widget build(BuildContext context) {
     var underLineBorder = CustomUnderlineInputBorder(
-        startOffset: getStartOffset(30.0),
-        spaceWidth: 30.0,
-        textWidth: calcTrueTextSize(50.0),
+        letterSpace: 30.0,
+        textSize: 50.0,
         textLength: 4,
         borderSide: BorderSide(color: Colors.black26, width: 2.0));
 
     var rectBorder = CustomRectInputBorder(
-        startOffset: getStartOffset(30.0),
-        spaceWidth: 30.0,
-        textWidth: calcTrueTextSize(50.0),
+        letterSpace: 30.0,
+        textSize: 50.0,
         textLength: 4,
         borderSide:
             BorderSide(color: Colors.blue.withOpacity(0.6), width: 2.0));
 
-    var t = 25.0;
-    var space = 60.0;
-
     var heartBorder = CustomHeartInputBorder(
-        startOffset: getStartOffset(space),
-        spaceWidth: space,
-        textWidth: calcTrueTextSize(t),
+        letterSpace: 60.0,
+        textSize: 20.0,
         textLength: 4,
         borderSide: BorderSide(color: Color(0xFFFFC0CB), width: 2.0));
 
@@ -80,25 +60,19 @@ class VerificationCodeState extends State<VerificationCodePage> {
               future: future,
               builder: (context, snapshot) {
                 var imageBorder = CustomImageInputBorder(
-                  startOffset: getStartOffset(space),
-                  spaceWidth: space,
-                  textWidth: calcTrueTextSize(50.0),
+                  letterSpace: 60.0,
+                  textSize: 50.0,
                   textLength: 3,
                   image: image,
                 );
                 switch (snapshot.connectionState) {
                   case ConnectionState.done:
                     if (snapshot.hasError) return Container();
-                    return TextField(
-                      maxLength: 3,
-                      keyboardType: TextInputType.number,
-                      style: TextStyle(
-                          fontSize: 50.0,
-                          color: Colors.black87,
-                          letterSpacing: space),
-                      decoration: InputDecoration(
-                          enabledBorder: imageBorder,
-                          focusedBorder: imageBorder),
+                    return VerificationCodeInput(
+                      codeLength: 3,
+                      textSize: 50.0,
+                      letterSpace: 60.0,
+                      inputBorder: imageBorder,
                     );
                     break;
                   default:
@@ -117,8 +91,8 @@ class VerificationCodeState extends State<VerificationCodePage> {
             inputBorder: rectBorder,
           ),
           VerificationCodeInput(
-            textSize: t,
-            letterSpace: space,
+            textSize: 20.0,
+            letterSpace: 60.0,
             inputBorder: heartBorder,
           ),
         ],

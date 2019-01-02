@@ -17,7 +17,7 @@ class VerificationCodeInput extends StatefulWidget {
   final int codeLength;
   final InputBorder inputBorder;
 
-  const VerificationCodeInput({
+  VerificationCodeInput({
     Key key,
     this.letterSpace = 20.0,
     this.textSize = 20.0,
@@ -32,22 +32,8 @@ class VerificationCodeInput extends StatefulWidget {
 class VerificationCodeInputState extends State<VerificationCodeInput> {
   double textTrueWidth;
 
-  void calcTrueTextSize() {
-    // 测量单个数字实际长度
-    var paragraph =
-        ui.ParagraphBuilder(ui.ParagraphStyle(fontSize: widget.textSize))
-          ..addText("0");
-    var p = paragraph.build()
-      ..layout(ui.ParagraphConstraints(width: double.infinity));
-    textTrueWidth = p.minIntrinsicWidth;
-  }
-
-  double get startOffset => widget.letterSpace * 0.5;
-
   @override
   Widget build(BuildContext context) {
-    calcTrueTextSize();
-
     return TextField(
       maxLength: widget.codeLength,
       keyboardType: TextInputType.number,
@@ -64,23 +50,49 @@ class VerificationCodeInputState extends State<VerificationCodeInput> {
   }
 }
 
-class CustomRectInputBorder extends UnderlineInputBorder {
-  final double spaceWidth;
-  final double textWidth;
-  final int textLength;
+abstract class InputBorder extends UnderlineInputBorder {
+  double textSize;
+  double letterSpace;
+  int textLength;
+
+  double textTrueWidth;
   final double startOffset;
 
-  const CustomRectInputBorder({
-    this.startOffset = 0.0,
-    this.spaceWidth,
-    this.textWidth,
+  void calcTrueTextSize() {
+    // 测量单个数字实际长度
+    var paragraph = ui.ParagraphBuilder(ui.ParagraphStyle(fontSize: textSize))
+      ..addText("0");
+    var p = paragraph.build()
+      ..layout(ui.ParagraphConstraints(width: double.infinity));
+    textTrueWidth = p.minIntrinsicWidth;
+  }
+
+  InputBorder({
+    this.textSize = 0.0,
+    this.letterSpace = 0.0,
     this.textLength,
     BorderSide borderSide = const BorderSide(),
-  }) : super(borderSide: borderSide);
+  })  : startOffset = letterSpace * 0.5,
+        super(borderSide: borderSide) {
+    calcTrueTextSize();
+  }
+}
 
-  double get offsetX => textWidth * 0.3;
+class CustomRectInputBorder extends InputBorder {
+  CustomRectInputBorder({
+    double textSize = 0.0,
+    double letterSpace,
+    int textLength,
+    BorderSide borderSide = const BorderSide(),
+  }) : super(
+            textSize: textSize,
+            letterSpace: letterSpace,
+            textLength: textLength,
+            borderSide: borderSide);
 
-  double get offsetY => textWidth * 0.3;
+  double get offsetX => textTrueWidth * 0.3;
+
+  double get offsetY => textTrueWidth * 0.3;
 
   @override
   void paint(
@@ -94,28 +106,26 @@ class CustomRectInputBorder extends UnderlineInputBorder {
     double curStartX = rect.left + startOffset - offsetX;
     for (int i = 0; i < textLength; i++) {
       Rect r = Rect.fromLTWH(curStartX, rect.top + offsetY,
-          textWidth + offsetX * 2, rect.height - offsetY * 2);
+          textTrueWidth + offsetX * 2, rect.height - offsetY * 2);
       canvas.drawRect(r, borderSide.toPaint());
-      curStartX += (textWidth + spaceWidth);
+      curStartX += (textTrueWidth + letterSpace);
     }
   }
 }
 
-class CustomHeartInputBorder extends UnderlineInputBorder {
-  final double spaceWidth;
-  final double textWidth;
-  final int textLength;
-  final double startOffset;
-
-  const CustomHeartInputBorder({
-    this.startOffset = 0.0,
-    this.spaceWidth,
-    this.textWidth,
-    this.textLength,
+class CustomHeartInputBorder extends InputBorder {
+  CustomHeartInputBorder({
+    double textSize = 0.0,
+    double letterSpace,
+    int textLength,
     BorderSide borderSide = const BorderSide(),
-  }) : super(borderSide: borderSide);
+  }) : super(
+            textSize: textSize,
+            letterSpace: letterSpace,
+            textLength: textLength,
+            borderSide: borderSide);
 
-  double get offsetX => textWidth * 0.3;
+  double get offsetX => textTrueWidth * 0.3;
 
   // angleOffset should be range 0 to 90.
   double get angleOffset => 40.0;
@@ -160,25 +170,23 @@ class CustomHeartInputBorder extends UnderlineInputBorder {
           degToRad(angleOffset),
           degToRad(-180.0 - angleOffset),
           true);
-      curStartX += (textWidth + spaceWidth);
+      curStartX += (textTrueWidth + letterSpace);
     }
     canvas.drawPath(path, borderSide.toPaint());
   }
 }
 
-class CustomUnderlineInputBorder extends UnderlineInputBorder {
-  final double spaceWidth;
-  final double textWidth;
-  final int textLength;
-  final double startOffset;
-
-  const CustomUnderlineInputBorder({
-    this.startOffset = 0.0,
-    this.spaceWidth,
-    this.textWidth,
-    this.textLength,
+class CustomUnderlineInputBorder extends InputBorder {
+  CustomUnderlineInputBorder({
+    double textSize = 0.0,
+    double letterSpace,
+    int textLength,
     BorderSide borderSide = const BorderSide(),
-  }) : super(borderSide: borderSide);
+  }) : super(
+            textSize: textSize,
+            letterSpace: letterSpace,
+            textLength: textLength,
+            borderSide: borderSide);
 
   @override
   void paint(
@@ -194,32 +202,31 @@ class CustomUnderlineInputBorder extends UnderlineInputBorder {
 //      canvas.clipPath(getOuterPath(rect, textDirection: textDirection));
     Path path = Path();
     path.moveTo(rect.bottomLeft.dx + startOffset, rect.bottomLeft.dy);
-    path.lineTo(rect.bottomLeft.dx + (textWidth + spaceWidth) * textLength,
+    path.lineTo(rect.bottomLeft.dx + (textTrueWidth + letterSpace) * textLength,
         rect.bottomRight.dy);
     path = dashPath.dashPath(path,
         dashArray: dashPath.CircularIntervalList<double>([
-          textWidth,
-          spaceWidth,
+          textTrueWidth,
+          letterSpace,
         ]));
     canvas.drawPath(path, borderSide.toPaint());
   }
 }
 
-class CustomImageInputBorder extends UnderlineInputBorder {
-  final double spaceWidth;
-  final double textWidth;
-  final int textLength;
-  final double startOffset;
+class CustomImageInputBorder extends InputBorder {
   final ui.Image image;
 
-  const CustomImageInputBorder({
-    this.startOffset = 0.0,
-    this.spaceWidth,
-    this.textWidth,
-    this.textLength,
-    this.image,
+  CustomImageInputBorder({
+    @required this.image,
+    double textSize = 0.0,
+    double letterSpace,
+    int textLength,
     BorderSide borderSide = const BorderSide(),
-  }) : super(borderSide: borderSide);
+  }) : super(
+            textSize: textSize,
+            letterSpace: letterSpace,
+            textLength: textLength,
+            borderSide: borderSide);
 
   @override
   void paint(
@@ -233,7 +240,7 @@ class CustomImageInputBorder extends UnderlineInputBorder {
     double curStartX = rect.left;
     for (int i = 0; i < textLength; i++) {
       canvas.drawImage(image, Offset(curStartX, 0.0), Paint());
-      curStartX += (textWidth + spaceWidth);
+      curStartX += (textTrueWidth + letterSpace);
     }
   }
 }
