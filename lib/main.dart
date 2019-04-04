@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_ui/circlefloatingmenu/ciecle_floating_menu_page.dart';
+import 'package:flutter_ui/circlefloatingmenu/circle_floating_menu_page.dart';
 import 'package:flutter_ui/circleprogressbar/progress_bar_page.dart';
 import 'package:flutter_ui/draglike/drag_like.dart';
 import 'package:flutter_ui/likebutton/like_button_page.dart';
@@ -13,6 +13,7 @@ import 'package:flutter_ui/slidedrawer/slide_drawer_page.dart';
 import 'package:flutter_ui/sliver/sliver_menu.dart';
 import 'package:flutter_ui/tipmenu/tip_menu_page.dart';
 import 'package:flutter_ui/verificationcode/Verification_code_paget.dart';
+import 'package:flutter_ui/webview/webview.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
             const Locale('en', 'US'),
           ],
           routes: {
+            UIRoute.webView: (_) => WebViewPage(),
             UIRoute.slideDrawer: (_) => SlideDrawerPage(),
 //        UIRoute.sharedElement: (_) => SharedElementPage(),
             UIRoute.sharedElement: (_) => ShopPage(),
@@ -180,6 +182,11 @@ class _MenuData {
 }
 
 final List<_MenuData> menus = [
+  const _MenuData(
+    title: 'WebView测试',
+    icon: Icons.web,
+    routeName: UIRoute.webView,
+  ),
   const _MenuData(
     title: '仿QQ侧滑菜单',
     icon: Icons.audiotrack,

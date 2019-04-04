@@ -3,10 +3,8 @@ import 'package:flutter_ui/circlefloatingmenu/circle_floating_menu.dart';
 import 'package:flutter_ui/circlefloatingmenu/floating_button.dart';
 import 'package:oktoast/oktoast.dart';
 
-/**
- * Make sure to give CircleFloatingMenu enough space to show menus,
- * or menu selected callback will not work !!!
- */
+/// Make sure to give CircleFloatingMenu enough space to show menus,
+/// or menu selected callback will not work !!!
 class FloatingMenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
