@@ -50,7 +50,7 @@ final List<ProductItem> _products = [
   ),
 ];
 
-final List<ProductItem> _products2 =[]..addAll(_products)..addAll(_products);
+final List<ProductItem> _products2 = []..addAll(_products)..addAll(_products);
 
 class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   _SliverAppBarDelegate({
@@ -198,21 +198,24 @@ class _CollapsingState extends State<SliverHeaderPage> {
                 fit: BoxFit.fill,
               ),
               color: Colors.white),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0),
-            child: Container(
-              child: Center(
-                child: Text(
-                  'This is header ${index + 1}',
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xE5FFFFFF),
+          child: ClipRect(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+              child: Container(
+                height: 60.0,
+                child: Center(
+                  child: Text(
+                    'This is header ${index + 1}',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xE5FFFFFF),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
+          )
         ),
       ),
     );
