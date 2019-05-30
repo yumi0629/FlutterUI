@@ -1,9 +1,10 @@
 import 'dart:async';
+import 'dart:convert';
 
+import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
-
 
 /// https://juejin.im/post/5ca1da31e51d4509ea3d0540
 class WebViewPage extends StatefulWidget {
@@ -23,7 +24,7 @@ class WebViewPageState extends State<WebViewPage> {
   }
 
   final Completer<WebViewController> _controller =
-  Completer<WebViewController>();
+      Completer<WebViewController>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +35,12 @@ class WebViewPageState extends State<WebViewPage> {
       body: Builder(builder: (BuildContext context) {
         return WebView(
           initialUrl: 'http://bin.amazeui.org/ruviyabibu',
+//          initialUrl: '',
           javascriptMode: JavascriptMode.unrestricted,
           onWebViewCreated: (WebViewController webViewController) {
 //            _controller = webViewController;
             _controller.complete(webViewController);
+//            _loadHtmlFromAssets(webViewController);
           },
           javascriptChannels: <JavascriptChannel>[
             _alertJavascriptChannel(context),
@@ -58,6 +61,14 @@ class WebViewPageState extends State<WebViewPage> {
       }),
       floatingActionButton: jsButton(),
     );
+  }
+
+  /// load local html.
+  _loadHtmlFromAssets(controller) async {
+    String fileText = await rootBundle.loadString('lib/assets/test.html');
+    controller.loadUrl(Uri.dataFromString(fileText,
+            mimeType: 'text/html', encoding: Encoding.getByName('utf-8'))
+        .toString());
   }
 
   Widget jsButton() {
