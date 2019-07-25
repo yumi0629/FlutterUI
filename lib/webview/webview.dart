@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /// https://juejin.im/post/5ca1da31e51d4509ea3d0540
 class WebViewPage extends StatefulWidget {
@@ -34,7 +35,7 @@ class WebViewPageState extends State<WebViewPage> {
       ),
       body: Builder(builder: (BuildContext context) {
         return WebView(
-          initialUrl: 'http://bin.amazeui.org/ruviyabibu',
+          initialUrl: 'http://bin.amazeui.org/fiqabe',
 //          initialUrl: '',
           javascriptMode: JavascriptMode.unrestricted,
           onWebViewCreated: (WebViewController webViewController) {
@@ -49,6 +50,9 @@ class WebViewPageState extends State<WebViewPage> {
             if (request.url.startsWith('js://webview')) {
               showToast('JS call Flutter By navigationDelegate');
               print('blocking navigation to $request}');
+              return NavigationDecision.prevent;
+            } else if (request.url.startsWith('xxxxxx://')) {
+              _openApp(request.url);
               return NavigationDecision.prevent;
             }
             print('allowing navigation to $request');
@@ -90,5 +94,13 @@ class WebViewPageState extends State<WebViewPage> {
           }
           return Container();
         });
+  }
+
+  void _openApp(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

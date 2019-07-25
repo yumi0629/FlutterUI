@@ -1,4 +1,4 @@
-abstract class UIRoute{
+abstract class UIRoute {
   static const String webView = 'web_view';
   static const String slideDrawer = 'slide_drawer';
   static const String sharedElement = 'shared_element';

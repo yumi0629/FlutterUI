@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
@@ -68,7 +69,8 @@ void _saveImage(Uint8List uint8List, Directory dir, String fileName,
 }
 
 Future<Uint8List> capturePng2List(RenderRepaintBoundary boundary) async {
-  ui.Image image = await boundary.toImage();
+  ui.Image image =
+      await boundary.toImage(pixelRatio: ui.window.devicePixelRatio);
   ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png);
   Uint8List pngBytes = byteData.buffer.asUint8List();
   return pngBytes;
