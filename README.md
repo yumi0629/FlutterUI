@@ -4,6 +4,14 @@
 
 For help building amazing UI with Flutter.
 
+## BottomAppbar
+
+code：https://github.com/yumi0629/FlutterUI/tree/master/lib/bottomappbar
+
+效果图：
+ 
+![](https://github.com/yumi0629/PreImages/blob/master/bottom_appbar.jpg)
+
 ## VerificationCodeInput
 
 教程：[Flutter花式玩转TextField，写一个验证码输入框超简单！](https://juejin.im/post/5c26fff86fb9a049d37f2e6b)
